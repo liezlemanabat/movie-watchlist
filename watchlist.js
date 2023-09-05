@@ -39,7 +39,7 @@ function renderWatchList() {
     const emptyWatchlist = `
                     <div class="action-container">
                         <h3>Your watchlist is looking a little empty...</h3>
-                        <p><i class="fa-solid fa-circle-plus"></i>Let's add some movies!</p>
+                        <p onclick='window.location.href="index.html"'><i class="fa-solid fa-circle-plus"></i>Let's add some movies!</p>
                     </div>
                     `
     if (localStorage.getItem('movies')) {
@@ -71,5 +71,5 @@ myWatchList.addEventListener('click', function(e){
 document.getElementById('search-link').addEventListener('click', navigateToIndex)
 
 function navigateToIndex() {
-    window.location.href = 'index.html';
+    window.location.href = 'index.html'
 }
