@@ -11,7 +11,7 @@ function getlocalValue() {
     }
 }
 
-function renderWatchList() {
+function displayWatchList() {
     let watchListHtml = watchListFromLocal.map((watchList) => {
         const { Title, Poster, Runtime, Genre, imdbRating, imdbID, Plot } = watchList
             return `
@@ -28,27 +28,24 @@ function renderWatchList() {
                          <div id="other-details">
                              <p id="movie-watch-hours">${Runtime}</p>
                              <p id="movie-genre">${Genre}</p>
-                             <p id="add-to-watchlist" data-imdb="${imdbID}"><i class="fa-solid fa-circle-minus"></i>&nbsp;Remove</p>
+                             <p id="remove-to-watchlist" data-imdb="${imdbID}"><i class="fa-solid fa-circle-minus"></i>&nbsp;Remove</p>
                          </div>
                          <p id="movie-description">${Plot}</p>
                      </div>
                  </div>
             `
     }).join('')
-    
-    const emptyWatchlist = `
-                    <div class="action-container">
-                        <h3>Your watchlist is looking a little empty...</h3>
-                        <p onclick='window.location.href="index.html"'><i class="fa-solid fa-circle-plus"></i>Let's add some movies!</p>
-                    </div>
-                    `
-    if (localStorage.getItem('movies')) {
-        myWatchList.innerHTML = watchListHtml
+        renderWatchList(watchListHtml)
+  }
+
+function renderWatchList(movieList){
+    if (watchListFromLocal.length > 0) {
+        myWatchList.innerHTML = movieList
     } else {
-        myWatchList.innerHTML = emptyWatchlist
-    } 
+        myWatchList.innerHTML = emptyWatchlist()
+    }
+    
 }
-renderWatchList()
 
 myWatchList.addEventListener('click', function(e){
     e.preventDefault()
@@ -64,12 +61,24 @@ myWatchList.addEventListener('click', function(e){
         localStorage.clear()
         localStorage.setItem('movies', newWatchList)
         getlocalValue()
-        renderWatchList()
+        displayWatchList()
     }
 })
+
+function emptyWatchlist() {
+    localStorage.clear()
+    return `
+            <div class="action-container">
+                <h3>Your watchlist is looking a little empty...</h3>
+                <p class="add-movie" onclick="window.location.href='index.html'"><i class="fa-solid fa-circle-plus"></i>Let's add some movies!</p>
+            </div>
+        `
+}
 
 document.getElementById('search-link').addEventListener('click', navigateToIndex)
 
 function navigateToIndex() {
     window.location.href = 'index.html'
 }
+
+displayWatchList()

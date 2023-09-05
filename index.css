@@ -1,12 +1,12 @@
 * {
     box-sizing: border-box;
-    /* border: 1px solid red; */
 }
 
 html, body {
     margin: 0 auto;
     font-family: 'Inter', sans-serif;
     max-width: 550px;
+    background-color: #2e4756;
 }
 
 /* Header Container */
@@ -79,10 +79,9 @@ header {
     height: auto;
     display: flex;
     flex-direction: column;
-    background: #FFF;
+    background: #d6cfcb;
     padding-top: 20px;
     box-sizing: border-box;
-    overflow: hidden; 
 }
 
 .action-container {
@@ -95,7 +94,7 @@ header {
 }
 
 .movie-list {
-    margin: 0 auto;
+    margin: 0 20px;
     display: flex;
     border-bottom: 3px solid #E5E7EB;
     padding: 20px 0; 
@@ -129,7 +128,14 @@ header {
 #add-to-watchlist:active,
 #add-to-watchlist:focus {
     cursor: pointer;
-    color: #ffb703;
+    color: #007f5f;
+}
+
+#remove-to-watchlist:hover,
+#remove-to-watchlist:active,
+#remove-to-watchlist:focus {
+    cursor: pointer;
+    color: #d90429;
 }
 
 #star-rating {
@@ -158,6 +164,10 @@ header {
     display: block;
     font-size: 14px;
     line-height: 1.2;
+}
+
+.add-movie {
+    cursor: pointer;
 }
 
 /* Typography */
